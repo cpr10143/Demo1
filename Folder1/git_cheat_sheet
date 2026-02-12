@@ -194,3 +194,4 @@ git pull                # actualiza main
 git switch dev
 git log --oneline main..dev
 git diff main..dev
+
