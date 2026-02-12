@@ -1,0 +1,196 @@
+cd ~/Documents/Git/repo_personal/demo-personal
+
+git branch          # comprobar que tienes main y dev
+git remote -v       # ver si ya tienes 'origin' o no
+
+# si aún no tienes remoto:
+git remote add origin git@github.com:TUNOMBRE/demo-personal.git
+
+git switch main
+git push -u origin main
+
+git switch dev
+git push -u origin dev
+
+Las ramas NACEN en local con cosas tipo:
+
+git switch -c dev   # -c = create
+
+GitHub solo ve lo que tú le empujas con git push.
+Si no haces git push, GitHub no tiene ni idea de tus ramas.
+
+-u (en git push -u):
+es simplemente un “acuerdo” entre la rama local y la remota:
+
+esta rama local <-> esta rama remota
+para que luego git push y git pull vayan solos sin argumentos.
+
+
+git branch -M main
+donde:
+branch → trabajar con ramas
+-M → move forzado: renombra la rama actual a main aunque ya exista otra con ese nombre.
+
+
+git switch dev
+# git switch dev  = cambia a la rama 'dev'
+
+git push -u origin dev
+# git push        = sube commits al remoto
+# -u              = set upstream: vincula 'dev' local con 'origin/dev' remoto
+# origin          = nombre del remoto (GitHub)
+# dev             = rama local que estás subiendo
+
+git branch -M main
+
+branch → manejar ramas
+
+-M (move forced) → renombra la rama actual a main forzando si hace falta.
+(-m minúscula renombraría sin forzar)
+
+git switch -c dev
+# switch → cambiar de rama
+# -c (create) → crea la rama dev y se mueve a ella
+
+git push -u origin main / git push -u origin dev
+# push → subir commits al remoto
+# -u (set upstream) → vincula la rama local con la rama remota
+# para que luego puedas usar git push / git pull sin más parámetros
+# origin → nombre estándar del remoto principal
+# main / dev → nombre de la rama local que subes
+# Trabajas SIEMPRE en una rama local (main, dev, feat/loquesea…).
+# Haces cambios → git add → git commit.
+# Cuando quieres subir esos cambios a GitHub:
+# Primera vez en una rama: git push -u origin NOMBRE_RAMA
+# Siguientes veces: solo git push
+
+
+
+cd ~/Documents/Git/repo_personal/demo-personal
+# cd = change directory → te metes en la carpeta del repo
+
+git status
+# git status = te dice en qué rama estás y si hay cambios pendientes
+
+git branch
+# git branch (sin opciones) = lista las ramas locales
+# el asterisco * marca la rama actual
+Si no estás en dev:
+
+git switch dev
+# git switch dev = cambia a la rama llamada 'dev'
+# (es el comando moderno para cambiar de rama; más claro que 'checkout')
+
+code hola.py
+
+git status
+# git status = muestra qué archivos han cambiado y si están 'tracked' o no
+
+git diff
+# git diff = muestra la diferencia línea a línea entre lo que hay en disco
+#            y lo que está guardado en el último commit
+Esto es como revisar visualmente qué iría en tu hipotético Pull Request.
+
+git add hola.py
+# git add hola.py = añade SÓLO hola.py al staging area
+# staging area = "lo que quiero meter en el próximo commit"
+#
+# podrías usar 'git add .' para todo,
+# pero es más sano acostumbrarse a añadir sólo lo que quieres de verdad.
+Puedes comprobar de nuevo:
+
+git status
+# ahora hola.py debería aparecer en verde, marcado como "changes to be committed"
+
+git commit -m "Actualiza mensaje de hola.py en rama dev"
+# git commit     = crea un commit con lo que está en el staging
+# -m "mensaje"   = mensaje del commit en una línea
+#                  debería explicar QUÉ has cambiado, no el cómo
+Si quieres ver el historial:
+
+git log --oneline --decorate --graph --all
+# git log           = muestra el historial de commits
+# --oneline         = cada commit en una línea (más compacto)
+# --decorate        = muestra nombres de ramas y tags junto a los commits
+# --graph           = dibuja un grafo ASCII (las ramas) en el margen
+# --all             = muestra todas las ramas, no sólo la actual
+
+git push -u origin dev
+# git push         = sube commits de la rama actual al remoto
+# -u               = set upstream: vincula 'dev' local con 'origin/dev' remoto
+# origin           = nombre del remoto (el repo de GitHub que configuraste)
+# dev              = rama local que quieres subir
+#
+# A partir de aquí, en esta rama podrás hacer sólo: 'git push' y 'git pull'
+# sin especificar más parámetros.
+Si ya habías hecho ese -u antes (es decir, dev ya existe en GitHub y está vinculada):
+
+git push
+# git push (sin más) = usa la rama remota asociada (origin/dev)
+
+Primero asegúrate de tener la rama main actualizada localmente:
+
+git switch main
+# cambiar a la rama main
+
+git pull
+# git pull = trae cambios del remoto y fusiona
+# en este repo de pruebas, seguramente no habrá cambios nuevos, pero es buena costumbre
+
+
+Vuelve a dev:
+
+git switch dev
+
+
+Ahora, para ver los commits que están en dev pero no en main:
+
+git log --oneline main..dev
+# git log          = historial
+# --oneline        = compacto
+# main..dev        = "commits que están en dev pero NO en main"
+#                    esto es literalmente el conjunto de commits que entrarán
+#                    en un PR de dev → main
+
+
+Y para ver la diferencia de código entre main y dev:
+
+git diff main..dev
+# git diff main..dev = diferencias de contenido entre lo que hay en main y dev
+#                      te enseña exactamente qué cambiaría al fusionar dev en main
+
+
+Eso es tu Pull Request mental:
+
+commits que entrarían
+
+cambios de código que se aplicarían.
+
+
+# 1. Ver estado
+git status
+
+# 2. Editar archivos (en VS Code, por ejemplo)
+code hola.py
+
+# 3. Ver cambios
+git diff
+
+# 4. Añadir al staging
+git add hola.py
+
+# 5. Commit
+git commit -m "Describe el cambio"
+
+# 6. Subir al remoto
+git push      # (si dev ya tiene upstream)
+# o
+git push -u origin dev
+Y para el PR mental:
+
+git switch main
+git pull                # actualiza main
+
+git switch dev
+git log --oneline main..dev
+git diff main..dev
