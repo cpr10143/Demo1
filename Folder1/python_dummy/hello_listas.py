@@ -31,5 +31,11 @@ print(message2)
 print("My first bike was a "+ bikes[0].title())
 
 #MAL >>bikes[3]='La nueva molona'
-bikes.append('La nueva molona')
+bikes.append('La nueva molona') #añade al final
 print(bikes)
+
+print(type(bikes)) #imprime el tipo de la variable
+num=3
+print(type(num))
+print(num+2)
+
