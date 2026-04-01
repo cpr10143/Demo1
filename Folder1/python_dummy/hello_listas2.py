@@ -36,9 +36,59 @@ print('-------------------**********------------------------')
 lista5.reverse() #ordena al reves
 print(lista5)
 
-print(split('hola como estas?' , '/'))
-
+print('\n')
 print('-------------------****EJER LIBRO******------------------------')
+print('---------------------------------------------------------------')
+
+print('\n')
 coches=['mercedes','toyota','seat','mazda']
 coches.insert(1,'fiat')
 print(coches)
+
+
+ejerLibro=["avión", "auto", "barco", "bicicleta"]
+ejerLibro.remove('auto') ##Si no sabemos la posición en la lista del elemento a borrar
+#Con REMOVE eliminamos por np¡ombreeeeee, utillll!!!!!!!!
+print(ejerLibro) # ['avión', 'barco', 'bicicleta']
+
+ejer3_4=["ana", "luis", "bea"]
+print(f"{ejer3_4[0].title()} estás invitad@ a la fiesta! :) ")
+print(f"{ejer3_4[1].title()} estás invitad@ a la fiesta! :) ")
+print(f"{ejer3_4[2].title()} estás invitad@ a la fiesta! :) ")
+
+ejer3_5_ko=ejer3_4.pop(1)
+print(f"Finalmente, {ejer3_5_ko.title()} no podrá asistir a la fiesta! :( ")
+ejer3_5_new='paca'
+ejer3_4.append(ejer3_5_new)
+print(ejer3_4)
+
+#ejer3_6
+ejer3_4.insert(0,'jaimito')
+ejer3_4.insert(2,'lucas')
+ejer3_4.append('ruben')
+print(ejer3_4) #['jaimito', 'ana', 'lucas', 'bea', 'paca', 'ruben']
+print('finalmente irán a la cena ',len(ejer3_4), ' personas') #6
+ejer3_7= ejer3_4
+print(type(ejer3_7))
+del ejer3_7[1]
+print(ejer3_7) #['jaimito', 'lucas', 'bea', 'paca', 'ruben']
+del ejer3_7[:]
+print(ejer3_7) #[]
+
+cars=['bmw','audi','subaru','toyota','seat' ]
+cars.sort()
+print(cars) #['audi', 'bmw', 'seat', 'subaru', 'toyota']
+cars.sort(reverse=True)
+print(cars) #['toyota', 'subaru', 'seat', 'bmw', 'audi']
+
+cars2=['bmw','audi','subaru','toyota','seat' ]
+print('el orden original es :')
+print(cars2) #['bmw', 'audi', 'subaru', 'toyota', 'seat']
+print('en orden para mostrar pero no interno sería ')
+print(sorted(cars2)) #['audi', 'bmw', 'seat', 'subaru', 'toyota']
+print('porque si volvemos a imprimir, vemos el orden original')
+print(cars2) #['bmw', 'audi', 'subaru', 'toyota', 'seat']
+
+cars2.reverse() #invierte el orden de las posicones, no reordena
+print(cars2) #['seat', 'toyota', 'subaru', 'audi', 'bmw']
+len(cars2)
