@@ -163,6 +163,11 @@ for num in ejer_1114:
 print(f'la suma de los pares es {suma_pares} y la suma de los impares es {suma_impares}')
 
 
+lista5=[1,2,3,4,5]
+lista6=[6,7,8,9,10]
+lista5=lista6
+print(lista5) #[6, 7, 8, 9, 10]
+
 print('-------------------*********************************------------------------')
 print('-------------------****EJER CURSO VIDEO LOOPS WHILE******------------------------')
 print('-------------------********************************------------------------')
