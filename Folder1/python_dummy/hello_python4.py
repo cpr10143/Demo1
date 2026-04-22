@@ -251,3 +251,6 @@ print(min(lista3)) #0
 
 lista_comprension=[num**3 for num in range(1,11)]
 print(lista_comprension) #[1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
+
+
+-----esto es un test para visual code - pr
